@@ -1,0 +1,39 @@
+{
+  "projects": [
+    {
+      "name": "Atlas Mobile",
+      "owner": "Mina Patel",
+      "status": "In Progress",
+      "recentActivity": "Shipping polish updates for onboarding and improving data sync reliability across the Android release candidate.",
+      "priority": "High"
+    },
+    {
+      "name": "Signal Ops",
+      "owner": "Andre Silva",
+      "status": "On Track",
+      "recentActivity": "Alerting dashboards are live and the team is reviewing backlog health before the next sprint handoff.",
+      "priority": "Medium"
+    },
+    {
+      "name": "Northstar Docs",
+      "owner": "Leah Chen",
+      "status": "At Risk",
+      "recentActivity": "Knowledge base coverage is lagging on API migration notes and the content review window is tightening.",
+      "priority": "High"
+    },
+    {
+      "name": "Harbor Platform",
+      "owner": "Omar Hassan",
+      "status": "Blocked",
+      "recentActivity": "Infrastructure approval is pending, delaying environment provisioning and the first QA pass for the release train.",
+      "priority": "High"
+    },
+    {
+      "name": "Clover Insights",
+      "owner": "Nia Brooks",
+      "status": "On Track",
+      "recentActivity": "The analytics team rolled out weekly trend summaries and is refining stakeholder alerting thresholds.",
+      "priority": "Low"
+    }
+  ]
+}

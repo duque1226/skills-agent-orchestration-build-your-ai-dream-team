@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Pulse</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Portfolio overview</p>
+          <h1>Project Pulse</h1>
+        </div>
+      </header>
+
+      <main class="dashboard" id="dashboard" aria-live="polite"></main>
+    </div>
+
+    <script src="project-data.json"></script>
+    <script>
+      const dashboard = document.getElementById('dashboard');
+
+      async function loadProjects() {
+        try {
+          const response = await fetch('project-data.json');
+          if (!response.ok) {
+            throw new Error('Unable to load project data.');
+          }
+
+          const data = await response.json();
+          const projects = Array.isArray(data.projects) ? data.projects : [];
+
+          if (!projects.length) {
+            dashboard.innerHTML = '<p class="empty-state">No project data available.</p>';
+            return;
+          }
+
+          dashboard.innerHTML = projects
+            .map(
+              (project) => `
+                <article class="project-card" data-status="${project.status.toLowerCase()}">
+                  <div class="card-header">
+                    <div>
+                      <p class="project-owner">${project.owner}</p>
+                      <h2>${project.name}</h2>
+                    </div>
+                    <span class="status-badge ${project.status.toLowerCase().replace(/\s+/g, '-')}">${project.status}</span>
+                  </div>
+
+                  <p class="project-summary">${project.recentActivity}</p>
+
+                  <div class="card-meta">
+                    <div>
+                      <span class="meta-label">Priority</span>
+                      <span class="priority-pill ${project.priority.toLowerCase().replace(/\s+/g, '-')}">${project.priority}</span>
+                    </div>
+                  </div>
+                </article>
+              `
+            )
+            .join('');
+        } catch (error) {
+          dashboard.innerHTML = `<p class="empty-state">${error.message}</p>`;
+        }
+      }
+
+      loadProjects();
+    </script>
+  </body>
+</html>
